@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import WalletManager from "./components/multi-sign/multiSign";
+import TransactionDetails from "./components/multi-sign/transaction";
+import Transactions from "./components/multi-sign/transactions";
+import { Home } from "./pages/home/home";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+
+                <Route path="/wallet" element={<WalletManager />} />
+                <Route path="/transactions" element={<Transactions />} />
+                <Route
+                    path="/transactions/:txHash"
+                    element={<TransactionDetails />}
+                />
+            </Routes>
+        </BrowserRouter>
+    );
 }
 
 export default App;
